@@ -1,11 +1,12 @@
 pipelineJob('DSL_Pipeline') {
 
-  def repo = 'git@github.com:gabrielrentero/new-task-gab.git'
+  def repo = 'https://github.com/gabrielrentero/new-task-gab.git'
 
   description("Pipeline for $repo")
 
   definition {
     cpsScm {
+      script('''
       scm {
         git {
           remote { url(repo) }
@@ -19,6 +20,8 @@ pipelineJob('DSL_Pipeline') {
         // enough control.
         // git(repo, 'master', { node -> node / 'extensions' << '' } )
       }
+      ''')
+      sandbox()
     }
   }
 }
