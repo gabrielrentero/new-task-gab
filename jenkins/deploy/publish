@@ -3,7 +3,8 @@
 export IMAGE=$(sed -n '1p' /tmp/.auth)
 export BUILD_TAG=$(sed -n '2p' /tmp/.auth)
 export PASS=$(sed -n '3p' /tmp/.auth)
+export ENV=$(sed -n '4p' /tmp/.auth)
 
 docker login -u testsaccount -p $PASS
-docker run testsaccount/thoughtworks-task:jenkins-thoughtworks-task-7
+docker run --name $BUILD_TAG-$ENV testsaccount/$IMAGE:$BUILD_TAG
 # cd /tmp && docker-compose up -d

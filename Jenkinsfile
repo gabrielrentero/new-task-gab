@@ -1,9 +1,9 @@
 pipeline {
 
     agent any
-    
+
     environment {
-        PASS = credentials('registry-pass') 
+        PASS = credentials('registry-pass')
     }
 
     stages {
@@ -42,9 +42,15 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Staging') {
             steps {
-                sh './jenkins/deploy/deploy.sh'
+                sh './jenkins/deploy/deploy.sh staging'
+            }
+        }
+
+        stage('Deploy Production') {
+            steps {
+                sh './jenkins/deploy/deploy.sh production'
             }
         }
     }
