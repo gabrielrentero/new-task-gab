@@ -6,7 +6,6 @@ pipelineJob('DSL_Pipeline') {
 
   definition {
     cpsScm {
-      script('''
       scm {
         git {
           remote { url(repo) }
@@ -20,8 +19,6 @@ pipelineJob('DSL_Pipeline') {
         // enough control.
         // git(repo, 'master', { node -> node / 'extensions' << '' } )
       }
-      ''')
-      sandbox()
     }
   }
 }
